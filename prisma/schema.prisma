@@ -1,0 +1,67 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/common/prisma/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Users {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique @db.VarChar(255)
+  password String  @db.VarChar(255)
+  fullName String? @db.VarChar(255)
+  age      Int?
+  avatar   String? @db.VarChar(255)
+
+  Images      Images[]
+  Comments    Comments[]
+  SavedImages SavedImages[]
+
+  @@map("nguoi_dung")
+}
+
+model Images {
+  id          Int     @id @default(autoincrement())
+  imageName   String  @db.VarChar(255)
+  imageUrl    String  @db.VarChar(500)
+  description String? @db.VarChar(500)
+  userId      Int
+
+  Users       Users         @relation(fields: [userId], references: [id])
+  Comments    Comments[]
+  SavedImages SavedImages[]
+
+  @@index([userId])
+  @@map("hinh_anh")
+}
+
+model Comments {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  imageId   Int
+  commentAt DateTime @default(now())
+  content   String   @db.VarChar(1000)
+
+  Users  Users  @relation(fields: [userId], references: [id])
+  Images Images @relation(fields: [imageId], references: [id])
+
+  @@index([userId])
+  @@index([imageId])
+  @@map("binh_luan")
+}
+
+model SavedImages {
+  userId  Int
+  imageId Int
+  savedAt DateTime @default(now())
+
+  Users  Users  @relation(fields: [userId], references: [id])
+  Images Images @relation(fields: [imageId], references: [id])
+
+  @@id([userId, imageId])
+  @@index([imageId])
+  @@map("luu_anh")
+}

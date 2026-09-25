@@ -1,0 +1,586 @@
+{
+  "info": {
+    "_postman_id": "de850873-431a-4cf2-9225-862398283488",
+    "name": "Pinterest API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43086118",
+    "_collection_link": "https://go.postman.co/collection/43086118-de850873-431a-4cf2-9225-862398283488?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@gmail.com\",\n  \"password\": \"123456\",\n  \"fullName\": \"Nguyen Van A\",\n  \"age\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@gmail.com\",\n  \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Image",
+      "item": [
+        {
+          "name": "Get Images",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3069/api/image",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Images",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3069/api/image/search?keyword=Núi",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "Núi"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Image Detail",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3069/api/image/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Image",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0obh}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "22e35907-09f3-4eb2-90d2-ff3f1ce8cf46",
+                  "src": "/Users/admin/chụp màn hình/Ảnh màn hình 2026-08-24 lúc 09.57.31.png"
+                },
+                {
+                  "key": "imageName",
+                  "type": "text",
+                  "uuid": "e141b4e0-3640-4b8c-ad5c-dfe7504e911a",
+                  "value": "Ảnh test Postman"
+                },
+                {
+                  "key": "description",
+                  "type": "text",
+                  "uuid": "4ceecb1d-6a21-478c-9ad3-73e4bc43edab",
+                  "value": "Ảnh upload từ Postman"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/image",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Image",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{supabase_service_role_api_key_0obh}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3069/api/image/6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "6"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Comment",
+      "item": [
+        {
+          "name": "Get Comments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3069/api/comment/image/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "comment",
+                "image",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Comment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0obh}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Ảnh này rất đẹp\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/comment/image/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "comment",
+                "image",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Save Image",
+      "item": [
+        {
+          "name": "Check Saved Image",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3069/api/save-image/check/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "save-image",
+                "check",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Save Image",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3069/api/save-image/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "save-image",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Saved Images",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3069/api/save-image",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "save-image"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Get User Info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3069/api/auth/get-info",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "auth",
+                "get-info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Created Images",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3069/api/image/my-images",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "my-images"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Nguyen Van B\",\n  \"age\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/user/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "user",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Avatar",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "avatar",
+                  "type": "file",
+                  "uuid": "4a1bf776-bc76-406a-896f-5b3328d3834e",
+                  "src": "/Users/admin/chụp màn hình/Ảnh màn hình 2026-08-24 lúc 09.57.25.png"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/user/avatar-cloud",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "user",
+                "avatar-cloud"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "accessToken",
+      "secret": true
+    },
+    {
+      "key": "auth_secret_0obh",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_0obh",
+      "secret": true
+    }
+  ]
+}

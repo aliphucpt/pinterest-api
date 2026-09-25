@@ -1,0 +1,48 @@
+-- -------------------------------------------------------------
+-- TablePlus 26.10.22(802)
+--
+-- https://tableplus.com/
+--
+-- Database: nodejs_56
+-- Generation Time: 2026-09-21 23:38:54.4440
+-- -------------------------------------------------------------
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+CREATE TABLE `ChatGroups` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `ownerId` int DEFAULT NULL,
+  `deletedBy` int DEFAULT '0',
+  `isDeleted` tinyint(1) DEFAULT '0',
+  `deletedAt` datetime DEFAULT NULL,
+  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `fk_chatgroups_owner` (`ownerId`),
+  CONSTRAINT `fk_chatgroups_owner` FOREIGN KEY (`ownerId`) REFERENCES `Users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `ChatGroups` (`id`, `name`, `ownerId`, `deletedBy`, `isDeleted`, `deletedAt`, `createdAt`, `updatedAt`) VALUES
+(1, NULL, 13, 0, 0, NULL, '2026-08-24 04:04:13', '2026-08-24 04:04:13'),
+(2, NULL, 13, 0, 0, NULL, '2026-08-24 04:15:57', '2026-08-24 04:15:57'),
+(3, 'nodejs56', 13, 0, 0, NULL, '2026-08-24 04:34:09', '2026-08-24 04:34:09'),
+(4, NULL, 14, 0, 0, NULL, '2026-08-24 06:46:11', '2026-08-24 06:46:11');
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
