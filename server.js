@@ -27,7 +27,7 @@ app.use("/api", appLimit, rootRouter);
 
 app.use(appError);
 
-const PORT = 3069;
+const PORT = process.env.PORT || 3069;
 
 app.listen(PORT, () => {
   console.log(`Server online at localhost:${PORT}`);
