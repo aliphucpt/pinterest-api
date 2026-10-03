@@ -23,6 +23,14 @@ app.use(logAPI());
 
 app.use(express.static("public"));
 
+// Route kiểm tra link deploy
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "Pinterest API is running",
+  });
+});
+
 app.use("/api", appLimit, rootRouter);
 
 app.use(appError);
